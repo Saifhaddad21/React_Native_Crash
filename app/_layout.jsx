@@ -1,7 +1,18 @@
 import { Text, StyleSheet, View } from "react-native";
 //  import React from "react";  // 1 :
-import { Slot } from 'expo-router'
+import { Slot, Stack  } from 'expo-router'
 
+const RootLayout = () => {
+    return (
+        <Stack>
+            <Stack.Screen name="index" options={{ headerShown: flase}}/>
+        </Stack>
+    )
+}
+
+
+export default RootLayout
+/*
 const RootLayout = () => {   // 2 : 
     return (
         <>
@@ -11,7 +22,9 @@ const RootLayout = () => {   // 2 :
         </>
     )
 }
-/*export default RootLayout*/
+export default RootLayout
+    */
+
 
 /*   //  1 :
 const RootLayout = () => {
