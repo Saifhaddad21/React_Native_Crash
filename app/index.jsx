@@ -7,7 +7,7 @@ export default function App() {
         <View className="flex-1 items-center justify-center bg-white">
             <Text className="text-3xl font-pblack">aora</Text>
             <StatusBar style="auto" />
-            <Link href="/Profile" style={{Color:"blue"}}>Go To Profile </Link>
+            <Link href="/home" style={{color:"blue"}}>Go To Home </Link>
         </View>
     );
 }
