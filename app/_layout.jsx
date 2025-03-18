@@ -1,8 +1,32 @@
 import { Text, StyleSheet, View } from "react-native";
 //  import React from "react";  // 1 :
-import { Slot, Stack  } from 'expo-router'
+import { Slot, SplashScreen, Stack  } from 'expo-router' 
+import { useFonts } from "expo-font";
+import { useEffect } from "react";
+
+SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
+const [fontsLoaded, error] = useFonts ({
+    "Poppins-Black": require("D:\Saif-Project\react_native_crash_course\assets\fonts\Poppins-Black.ttf") ,
+    "Poppins-Bold": require("D:\Saif-Project\react_native_crash_course\assets\fonts\Poppins-Bold.ttf") ,
+    "Poppins-ExtraBold": require("D:\Saif-Project\react_native_crash_course\assets\fonts\Poppins-ExtraBold.ttf") ,
+    "Poppins-ExtraLight": require("D:\Saif-Project\react_native_crash_course\assets\fonts\Poppins-ExtraLight.ttf") ,
+    "Poppins-Light": require("D:\Saif-Project\react_native_crash_course\assets\fonts\Poppins-Light.ttf") ,
+    "Poppins-Regular": require("D:\Saif-Project\react_native_crash_course\assets\fonts\Poppins-Regular.ttf") ,
+    "Poppins-SemiBold": require("D:\Saif-Project\react_native_crash_course\assets\fonts\Poppins-SemiBold.ttf") ,
+    "Poppins-Thin": require("D:\Saif-Project\react_native_crash_course\assets\fonts\Poppins-Thin.ttf") ,
+});
+
+useEffect ( () => {
+    if (error) throw error;
+
+    if (fontsLoaded) SplashScreen.hideAsync();
+}, [fontsLoaded, error])
+
+if(!fontsLoaded && !error) return null;
+
+
     return (
         <Stack>
             <Stack.Screen name="index" options={{ headerShown: flase}}/>
