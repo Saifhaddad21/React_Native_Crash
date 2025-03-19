@@ -30,6 +30,9 @@ if(!fontsLoaded && !error) return null;
     return (
         <Stack>
             <Stack.Screen name="index" options={{ headerShown: flase}}/>
+            <Stack.Screen name="(auth)" options={{ headerShown: flase}}/>
+            <Stack.Screen name="(tabs)" options={{ headerShown: flase}}/>
+            {/* <Stack.Screen name="/search/[query]" options={{ headerShown: flase}}/> */}
         </Stack>
     )
 }
