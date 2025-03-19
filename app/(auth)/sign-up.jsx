@@ -1,27 +1,44 @@
-import { View, Text } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Image, ScrollView } from 'react-native-web'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 
 
 import { Images } from '../../assets/image'
 import FormField from '../../components/FormField'
 
-import  CustomButton  from '../../components/CustomButton'
+import CustomButton from '../../components/CustomButton'
+
+import { createUser } from '../../lib/appwrite'
 
 const SingUp = () => {
-const [form, setform] = useState({
-    username: '',
-    email: '',
-    password: ''
-})
+    const [form, setform] = useState({
+        username: '',
+        email: '',
+        password: ''
+    })
 
-const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
-const submit = () => {
+    const submit = async () => {
+        if (!form.username || !form.email || !form.password) {
+            Alert.alert('Error', 'please fill in all the fields')
+        }
+        setIsSubmitting(true)
 
-}
+        try {
+            const result = await createUser(form.email, form.password, form.username)
+
+            //set it tpo global state...
+
+            router.replace('/home')
+        } catch (error) {
+            Alert.alert('Error', error.message)
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
 
     return (
         <SafeAreaView className="bg-primary h-full ">
@@ -38,39 +55,45 @@ const submit = () => {
                         Sign up to Aora
                     </Text>
 
-                    <FormField 
-                    title="Username"
-                    value={form.username}
-                    handleChangeText={(e) => setform({ ...form,
-                        username: e })}
-                    otherStyles="mt-10"
+                    <FormField
+                        title="Username"
+                        value={form.username}
+                        handleChangeText={(e) => setform({
+                            ...form,
+                            username: e
+                        })}
+                        otherStyles="mt-10"
                     />
 
-<FormField 
-                    title="Email"
-                    value={form.email}
-                    handleChangeText={(e) => setform({ ...form,
-                        email: e })}
-                    otherStyles="mt-7"
-                    keyboardType="email-address"
+                    <FormField
+                        title="Email"
+                        value={form.email}
+                        handleChangeText={(e) => setform({
+                            ...form,
+                            email: e
+                        })}
+                        otherStyles="mt-7"
+                        keyboardType="email-address"
                     />
 
-                    <FormField 
-                    title="Password"
-                    value={form.password}
-                    handleChangeText={(e) => setform({ ...form,
-                        password: e })}
-                    otherStyles="mt-7"
+                    <FormField
+                        title="Password"
+                        value={form.password}
+                        handleChangeText={(e) => setform({
+                            ...form,
+                            password: e
+                        })}
+                        otherStyles="mt-7"
                     />
 
-                    <CustomButton 
-                        title="Sing In"
+                    <CustomButton
+                        title="Sing Up"
                         handlePress={submit}
                         containerStyles="mt-7"
                         isLoading={isSubmitting}
                     />
 
-                    <View className="justify-center pt-5 flex-row gab-2"> 
+                    <View className="justify-center pt-5 flex-row gab-2">
                         <Text className="text-lg text-gray-100 font-pregular">
                             Have an account already ?
                         </Text>
@@ -79,7 +102,7 @@ const submit = () => {
                         </Link>
 
                     </View>
-                
+
                 </View>
             </ScrollView>
         </SafeAreaView>

@@ -16,7 +16,7 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
-      // "package": "com"
+      "package": "com.jsm.aura"
 
     },
     "web": {

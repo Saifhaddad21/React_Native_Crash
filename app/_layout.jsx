@@ -3,6 +3,7 @@ import { Text, StyleSheet, View } from "react-native";
 import { Slot, SplashScreen, Stack  } from 'expo-router' 
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+import GlobalProvider from '../context/GlobalProvider'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,12 +29,14 @@ if(!fontsLoaded && !error) return null;
 
 
     return (
+        <GlobalProvider>
         <Stack>
             <Stack.Screen name="index" options={{ headerShown: flase}}/>
             <Stack.Screen name="(auth)" options={{ headerShown: flase}}/>
             <Stack.Screen name="(tabs)" options={{ headerShown: flase}}/>
             {/* <Stack.Screen name="/search/[query]" options={{ headerShown: flase}}/> */}
         </Stack>
+        </GlobalProvider>
     )
 }
 
