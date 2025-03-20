@@ -7,39 +7,21 @@ import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyStatus from '../../components/EmptyStatus'
 import { getAllPosts } from '../../lib/appwrite'
+import useAppwrite from '../../lib/useAppwrite'
+import VideoCard from '../../components/VideoCard'
 
 const Home = () => {
-
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-
-            try {
-                const response = await getAllPosts()
-
-                setData(response);
-            } catch (error) {
-                Alert.alert('Error' ,error.message)
-            }finally {
-                setIsLoading(false);
-            }
-        }
-
-        fetchData();
-    }, []);
-
-    console.log(data);
+const { data: Posts, refetch } = useAppwrite(getAllPosts);
 
     const [refreshing, setRefreshing] = useState(false)
 
     const onRefresh = async () => {
         setRefreshing(true);
-        // re call videos -> if any new videos appeard 
+        await refetch();
         setRefreshing(false);
     }
+
+    console.log(Posts)
 
     return (
         <SafeAreaView className="bg-primary h-full">
@@ -47,7 +29,7 @@ const Home = () => {
                 data={[{ id: 1 }, { id: 2 }, { id: 3 }]}
                 keyExtractor={(item) => item.$id}
                 renderItem={(item) => (
-                    <Text className="text-3xl text-white"> {item.id}  </Text>
+                    <VideoCard video={item} />
                 )}
                 ListHeaderComponent={() => (
                     <View className="my-6 px-4 space-y-6 ">
@@ -95,6 +77,7 @@ const Home = () => {
             />
         </SafeAreaView>
     )
+    
 }
 
 export default Home
