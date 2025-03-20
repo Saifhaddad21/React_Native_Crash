@@ -9,12 +9,14 @@ import { Images } from '../../assets/image'
 import FormField from '../../components/FormField'
 
 import  CustomButton  from '../../components/CustomButton'
-import { signIn } from '../../lib/appwrite'
+import { getCurrentUser, signIn } from '../../lib/appwrite'
+import { useGlaobalContext } from '../../context/GlobalProvider'
 
 const SingIn = () => {
-const [form, setform] = useState({
-    email: '',
-    password: ''
+    const { setUser, setIsLoggedIn} = useGlaobalContext
+    const [form, setform] = useState({
+        email: '',
+        password: ''
 })
 
 const [isSubmitting, setIsSubmitting] = useState(false)
@@ -28,7 +30,10 @@ const submit = async () => {
         try {
             await signIn(form.email, form.password)
 
-            //set it tpo global state...
+            const result = await getCurrentUser();
+
+            setUser(result);
+            setIsLoggedIn(true);
 
             router.replace('/home')
         } catch (error) {

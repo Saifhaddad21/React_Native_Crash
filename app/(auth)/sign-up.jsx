@@ -11,8 +11,10 @@ import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 
 import { createUser } from '../../lib/appwrite'
+import { useGlaobalContext } from '../../context/GlobalProvider'
 
 const SingUp = () => {
+    const { setUser, setIsLoggedIn} = useGlaobalContext
     const [form, setform] = useState({
         username: '',
         email: '',
@@ -30,7 +32,8 @@ const SingUp = () => {
         try {
             const result = await createUser(form.email, form.password, form.username)
 
-            //set it tpo global state...
+            setUser(result);
+            setIsLoggedIn(true);
 
             router.replace('/home')
         } catch (error) {

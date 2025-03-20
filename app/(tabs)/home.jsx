@@ -9,8 +9,10 @@ import EmptyStatus from '../../components/EmptyStatus'
 import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
 import VideoCard from '../../components/VideoCard'
+import { useGlaobalContext } from '../../context/GlobalProvider'
 
 const Home = () => {
+    const { user, setUser, setIsLoggedIn } = useGlaobalContext();
     const { data: Posts, refetch } = useAppwrite(getAllPosts);
     const { data: latestPosts } = useAppwrite(getLatestPosts);
 
@@ -22,7 +24,7 @@ const Home = () => {
         setRefreshing(false);
     }
 
-    console.log(Posts)
+    console.log(user?.username)
 
     return (
         <SafeAreaView className="bg-primary h-full">
@@ -41,7 +43,7 @@ const Home = () => {
                                     Welcome back
                                 </Text>
                                 <Text className="text-2xl font-psemibold text-white">
-                                    JSmastery
+                                    {user?.username}
                                 </Text>
                             </View>
 
