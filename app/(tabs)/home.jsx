@@ -6,12 +6,13 @@ import { images } from '../../assets'
 import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyStatus from '../../components/EmptyStatus'
-import { getAllPosts } from '../../lib/appwrite'
+import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
 import VideoCard from '../../components/VideoCard'
 
 const Home = () => {
-const { data: Posts, refetch } = useAppwrite(getAllPosts);
+    const { data: Posts, refetch } = useAppwrite(getAllPosts);
+    const { data: latestPosts } = useAppwrite(getLatestPosts);
 
     const [refreshing, setRefreshing] = useState(false)
 
@@ -62,22 +63,22 @@ const { data: Posts, refetch } = useAppwrite(getAllPosts);
                                 Latest videos
                             </Text>
 
-                            <Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }] ?? [] } />
+                            <Trending posts={latestPosts ?? []} />
 
                         </View>
                     </View>
                 )}
                 ListEmptyComponent={() => (
                     <EmptyStatus
-                    title="No videos found "
-                    subTitle="be the first one to upload a video "
+                        title="No videos found "
+                        subTitle="be the first one to upload a video "
                     />
                 )}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
             />
         </SafeAreaView>
     )
-    
+
 }
 
 export default Home

@@ -2,6 +2,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 import icons from '../assets/icons'
+import { ResizeMode, Video } from 'expo-av'
 
 const VideoCard = ({ video: { title, thumbnail, video, creator: { username, avatar } } }) => {
     const [play, setPlay] = useState(false)
@@ -42,39 +43,50 @@ const VideoCard = ({ video: { title, thumbnail, video, creator: { username, avat
 
                 <View className="pt-2 ">
 
-                    <Image 
-                    source={icons.menu}
-                    className="w-5 h-5"
-                    resizeMode='contain'
+                    <Image
+                        source={icons.menu}
+                        className="w-5 h-5"
+                        resizeMode='contain'
                     />
 
                 </View>
 
             </View>
 
-        {play ? (
-            <Text className="text-white">Playing</Text>
-        ) : (
-            <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => setPlay(true)}
-            className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
-            >
-
-                <Image 
-                source={{ uri:thumbnail }}
-                className="w-full h-full rounded-xl mt-3"
-                resizeMode='cover'
+            {play ? (
+                <Video
+                    source={{ uri: Video }}
+                    className="w-full h-60 rounded-xl mt-3"
+                    resizeMode={ResizeMode.CONTAIN}
+                    useNativeControls
+                    shouldPlay
+                    onPlaybackStatusUpdate={(status) => {
+                        if (status.didJustFinish) {
+                            setPlay(false);
+                        }
+                    }}
                 />
+            ) : (
+                <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => setPlay(true)}
+                    className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
+                >
 
-                <Image 
-                source={icons.play}
-                className="w-12 h-12 absolute "
-                resizeMode='contain'
-                />
+                    <Image
+                        source={{ uri: thumbnail }}
+                        className="w-full h-full rounded-xl mt-3"
+                        resizeMode='cover'
+                    />
 
-            </TouchableOpacity>
-        )}
+                    <Image
+                        source={icons.play}
+                        className="w-12 h-12 absolute "
+                        resizeMode='contain'
+                    />
+
+                </TouchableOpacity>
+            )}
         </View>
     )
 }
