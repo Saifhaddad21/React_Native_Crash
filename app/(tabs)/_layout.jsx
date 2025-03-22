@@ -103,13 +103,18 @@
 
 import { View, Text, Image } from 'react-native';
 import { Tabs } from 'expo-router';
-import { icons } from '../../assets/icons';
+
+import  {home}  from '../../assets/icons/home.png';
+import  {bookmark}  from '../../assets/icons/bookmark.png';
+import  {plus}  from '../../assets/icons/plus.png';
+import  {profile}  from '../../assets/icons/profile.png';
+
 
 const TabIcon = ({ icon, color, name, focused }) => {
     return (
         <View className='items-center justify-center gap-2'>
             <Image 
-                source={icon}
+                source={icon.png}
                 resizeMode='contain'
                 tintColor={color}
                 className="w-6 h-6"
@@ -145,7 +150,7 @@ const TabsLayout = () => {
                         headerShown: false,
                         tabBarIcon: ({ color, focused }) => (
                             <TabIcon
-                                icon={icons.home}
+                                icon={home}
                                 color={color}
                                 name="Home"
                                 focused={focused}
@@ -160,7 +165,7 @@ const TabsLayout = () => {
                         headerShown: false,
                         tabBarIcon: ({ color, focused }) => (
                             <TabIcon
-                                icon={icons.bookmark}
+                                icon={bookmark}
                                 color={color}
                                 name="Bookmark"
                                 focused={focused}
@@ -175,7 +180,7 @@ const TabsLayout = () => {
                         headerShown: false,
                         tabBarIcon: ({ color, focused }) => (
                             <TabIcon
-                                icon={icons.plus}
+                                icon={plus}
                                 color={color}
                                 name="Create"
                                 focused={focused}
@@ -190,7 +195,7 @@ const TabsLayout = () => {
                         headerShown: false,
                         tabBarIcon: ({ color, focused }) => (
                             <TabIcon
-                                icon={icons.profile}
+                                icon={profile}
                                 color={color}
                                 name="Profile"
                                 focused={focused}

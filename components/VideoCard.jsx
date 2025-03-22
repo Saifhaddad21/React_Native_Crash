@@ -1,7 +1,10 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-import icons from '../assets/icons'
+import {menu} from '../assets/icons/menu.png'
+import {play} from '../assets/icons/play.png'
+
+
 import { ResizeMode, Video } from 'expo-av'
 
 const VideoCard = ({ video: { title, thumbnail, video, creator: { username, avatar } } }) => {
@@ -44,7 +47,7 @@ const VideoCard = ({ video: { title, thumbnail, video, creator: { username, avat
                 <View className="pt-2 ">
 
                     <Image
-                        source={icons.menu}
+                        source={menu}
                         className="w-5 h-5"
                         resizeMode='contain'
                     />
@@ -80,7 +83,7 @@ const VideoCard = ({ video: { title, thumbnail, video, creator: { username, avat
                     />
 
                     <Image
-                        source={icons.play}
+                        source={play}
                         className="w-12 h-12 absolute "
                         resizeMode='contain'
                     />

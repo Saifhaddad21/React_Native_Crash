@@ -5,7 +5,6 @@ import { Image, ScrollView } from 'react-native-web'
 import { Link, router } from 'expo-router'
 
 
-import { Images } from '../../assets/image'
 import FormField from '../../components/FormField'
 
 import CustomButton from '../../components/CustomButton'
@@ -49,7 +48,7 @@ const SingUp = () => {
                 <View className="w-full min-h-[85vh] justify-center px-4 my6">
 
                     <Image
-                        source={Images.logo}
+                        source={Image.logo}
                         resizeMode='contain'
                         className="w-[115px] h-[35px] "
                     />

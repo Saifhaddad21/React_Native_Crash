@@ -1,8 +1,9 @@
 import { View, Text, FlatList, TouchableOpacity, ImageBackground, Image } from 'react-native'
 import React, { useState } from 'react'
 import * as Animatable from 'react-native-animatable'
-import icons from '../assets/icons'
 import { Video, ResizeMode } from 'expo-av'
+
+import { play } from '../assets/icons/play.png'
 
 const zoomIn = {
     0: {
@@ -58,7 +59,7 @@ const [play, setPlay] = useState(false)
                     />
 
                     <Image  
-                    source={icons.play}
+                    source={play}
                     className="w-12 h-12 absolute"
                     resizeMode='contain'
                     />

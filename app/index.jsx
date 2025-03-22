@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { Redirect, router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-web';
 
-import { Images } from '../assets/image'
+import {logo} from '../assets/image/logo.png'
+import {cards} from '../assets/image/cards.png'
+import {path} from '../assets/image/path.png'
+
 import {CustomButton } from '../components/CustomButton';
 import { useGlaobalContext } from '../context/GlobalProvider';
 
@@ -18,13 +21,13 @@ if(!isLoading && !isLoggedIn) return <Redirect href="/home"/>
             <ScrollView contentContainerStyle={{ height: '100%' }}>
                 <View className="w-full justify-center items-center min-h-[84px] px-4">
                     <Image
-                        source={Images.logo}
+                        source={logo}
                         className="w-[130px] h-[84px]"
                         resizeMode="contain"
                     />
 
                     <Image
-                        source={Images.cards}
+                        source={cards}
                         className="max-w-[380px] w-full h-[300px]"
                         resizeMode="contain"
                     />
@@ -36,7 +39,7 @@ if(!isLoading && !isLoggedIn) return <Redirect href="/home"/>
                         </Text>
 
                         <Image
-                            source={Images.path}
+                            source={path}
                             className="w-[136px] h-[15px] absolute -bottom-2 -right-8"
                             resizeMode="contain"
                         />

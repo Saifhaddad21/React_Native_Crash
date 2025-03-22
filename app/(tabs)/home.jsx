@@ -1,8 +1,7 @@
-import { View, Text, Image, RefreshControl, Alert } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text, Image, RefreshControl } from 'react-native'
+import React, {  useState } from 'react'
 import { FlatList, SafeAreaView } from 'react-native'
 
-import { images } from '../../assets'
 import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyStatus from '../../components/EmptyStatus'
@@ -10,6 +9,8 @@ import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
 import VideoCard from '../../components/VideoCard'
 import { useGlaobalContext } from '../../context/GlobalProvider'
+
+import {logo} from '../../assets/image/logo.png'
 
 const Home = () => {
     const { user, setUser, setIsLoggedIn } = useGlaobalContext();
@@ -49,7 +50,7 @@ const Home = () => {
 
                             <View className="mt-1.5">
                                 <Image
-                                    source={images.Logo - small}
+                                    source={logo}
                                     className="w-9 h-10"
                                     resizeMode='contain'
                                 />

@@ -2,8 +2,8 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import { TextInput } from 'react-native-web'
 
-import { icons } from '../assets/icons'
-
+import {eye} from '../assets/icons/eye.png'
+import {eyehide} from '../assets/icons/eye-hide.png'
 
 
 const FormField = ({ title, value, placeholder, handleChangeText, otherStyles, ...props }) => {
@@ -30,7 +30,7 @@ const FormField = ({ title, value, placeholder, handleChangeText, otherStyles, .
                     <TouchableOpacity onPress={() =>
                         setShowPassword(!showPassword)}>
                         <Image
-                            source={!showPassword ? icons.eye : icons.eyehide}
+                            source={!showPassword ? eye : eye-hide}
                             className="w-6 h-6"
                             resizeMode='contain'
                         />

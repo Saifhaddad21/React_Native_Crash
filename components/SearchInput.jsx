@@ -2,9 +2,8 @@ import { View, Text, TouchableOpacity, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { TextInput } from 'react-native-web'
 
-import { icons } from '../assets/icons'
+import { search } from '../assets/icons/search.png'
 
-import {SearchInput} from '../components/SearchInput'
 import { router, usePathname } from 'expo-router'
 
 
@@ -36,7 +35,7 @@ const SearchInput = ( { intiilQuery } ) => {
                 }}
                 >
                     <Image 
-                    source={icons.search}
+                    source={search}
                     className="w-5 h-5"
                     resizeMode='contain'
                     /> 

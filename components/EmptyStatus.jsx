@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 
-import { image } from '../assets'
+import { empty } from '../assets/image/empty.png'
 
 import CustomButton from './CustomButton'
 import { router } from 'expo-router'
@@ -10,7 +10,7 @@ const EmptyStatus = ({ title, subtitle}) => {
     return (
         <View className="justify-center items-center px-4">
             <Image
-                source={image.empty}
+                source={empty}
                 className="w-[270px] h-[215px]"
                 resizeMode='contain'
             />

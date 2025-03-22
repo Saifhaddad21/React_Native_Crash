@@ -1,11 +1,9 @@
 import { View, Text } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Image, ScrollView } from 'react-native-web'
 import { Link, router } from 'expo-router'
+import { Image } from 'react-native'
 
-
-import { Images } from '../../assets/image'
 import FormField from '../../components/FormField'
 
 import  CustomButton  from '../../components/CustomButton'
@@ -49,7 +47,7 @@ const submit = async () => {
                 <View className="w-full min-h-[85vh] justify-center px-4 my6">
 
                     <Image
-                        source={Images.logo}
+                        source={Image.logo}
                         resizeMode='contain'
                         className="w-[115px] h-[35px] "
                     />
